@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>First Test</title>
+<script src="libs/angular.js"></script>
+<script>
+	angular.module('myApp',[])
+	.directive('myDirective', function() {
+		return {
+			restrict: 'E',
+			template: '<span>hi world</span>',
+			link: function(scope, el, attrs) {
+				console.log(el.html());
+				console.log(attrs.test);
+			}
+		};
+	})
+	.directive('attributeDirective', function(){
+		return{
+			restrict: 'A',
+			template: 'attribute content',
+			link: function(scope, el, attrs){
+				console.log(el.html());
+				console.log(attrs.attributeDirective);
+				console.log(attrs.someAttr);
+			}
+		};
+	});
+</script>
+</head>
+<body>
+<div ng-app="myApp">
+	<my-directive test="!!"></my-directive>
+	<br />
+	<div attribute-directive="aval" some-attr="myvalue"></div>
+</div>
+</body>
+</html>
